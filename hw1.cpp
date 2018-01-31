@@ -11,7 +11,95 @@ using namespace std;
 /****  Your homework starts here ****/
 vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary){
 	vector< vector<string> > ans;
-	
+	string cur_word;
+	int word_diff;
+	int char_diff;
+	int idx;
+	int i;
+	int flag=1;
+
+	/* check if it is end of recursive function */
+	for (idx = 0; idx < beginWord.length(); idx++)
+	{
+		if (beginWord[idx] != endWord[idx])
+		{
+			flag = 0;
+			break;
+		}
+	}
+	if (flag)
+	{
+		ans.push_back(beginWord);
+		return ans;
+	}
+
+	/* check Dictionary if any word inside has just 1 character different from current word */
+	for(i=0;i<wordDictionary.size();i++)
+	{
+		cur_word = wordDictionary[i];
+		word_diff = beginWord.length() - cur_word.length();
+
+		/* check length */
+		if (word_diff > 1 || word_diff < -1)			
+			continue;
+
+		/* length is match, check different character */
+		else if (word_diff == 0)
+		{
+			char_diff = 0;
+			for (idx = 0; idx < beginWord.length(); idx++)
+			{
+				if (beginWord[idx] != cur_word[idx])		
+					char_diff++;
+			}
+			
+			if (char_diff != 1)
+				continue;
+			else					
+			{
+				vector<string> newDictionary;
+				vector< vector<string> > ans1;
+				newDictionary.assign(wordDictionary.begin(),wordDictionary.end());
+
+				/* to avoid repeated */
+				newDictionary.erase(wordDictionary.begin()+i);
+				/* using recursive function to find answer */
+				ans1 = findLadders(cur_word,endWord,newDictionary);
+
+				if (ans1.empty())
+					continue;
+				else
+				{
+					ans1.insert(ans1.begin(),cur_word);
+					ans.assign(ans1.begin(),ans.end());
+					break;
+				}
+			}
+		}
+
+		/* length is 1 character longer/shorter */
+		else if (word_diff == 1 || word_diff == -1)
+		{
+			vector<string> newDictionary;
+			vector< vector<string> > ans1;
+			newDictionary.assign(wordDictionary.begin(),wordDictionary.end());
+
+			/* to avoid repeated */
+			newDictionary.erase(wordDictionary.begin()+i);
+			/* using recursive function to find answer */
+			ans1 = findLadders(cur_word,endWord,newDictionary);
+
+			if (ans1.empty())
+				continue;
+			else
+			{
+				ans1.insert(ans1.begin(),cur_word);
+				ans.assign(ans1.begin(),ans.end());
+				break;
+			}
+		}
+	}
+
 	cout << NOT.size() << endl;
 	// Return an empty vector if you cannot find one
 	return ans;
