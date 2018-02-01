@@ -50,7 +50,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			{
 				vector<string> newDictionary;
 				vector< vector<string> > ans1;
-				newDictionary.assign(wordDictionary.begin(),wordDictionary.end());
+				newDictionary = wordDictionary;
 
 				/* to avoid repeated */
 				newDictionary.erase(wordDictionary.begin()+i);
@@ -75,7 +75,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		{
 			vector<string> newDictionary;
 			vector< vector<string> > ans1;
-			newDictionary.assign(wordDictionary.begin(),wordDictionary.end());
+			newDictionary = wordDictionary;
 
 			/* to avoid repeated */
 			newDictionary.erase(wordDictionary.begin()+i);
