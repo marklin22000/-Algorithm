@@ -11,13 +11,17 @@ using namespace std;
 /****  Your homework starts here ****/
 vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary){
 	vector< vector<string> > ans;
+	vector< vector<string> > ans1;	//temp answer
+	vector<string> newDictionary;	//for recursive function
+	vector<string> ans_string;
 	string cur_word;
 	int word_diff;
 	int char_diff;
 	int idx;
 	int i;
-	int flag=1;
-
+	int flag;
+	
+	flag = 1;
 	/* check if it is end of recursive function */
 	for (idx = 0; idx < beginWord.length(); idx++)
 	{
@@ -29,7 +33,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	}
 	if (flag)
 	{
-		vector<string> ans_string;
 		ans_string.push_back(beginWord);
 		ans.push_back(ans_string);
 		return ans;
@@ -59,8 +62,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				continue;
 			else					
 			{
-				vector<string> newDictionary;
-				vector< vector<string> > ans1;
 				newDictionary.assign(wordDictionary.begin(),wordDictionary.end());
 
 				/* to avoid repeated */
@@ -72,7 +73,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					continue;
 				else
 				{
-					vector<string> ans_string;
 					ans_string.push_back(cur_word);
 					ans1.insert(ans1.begin(),ans_string);
 					ans.assign(ans1.begin(),ans.end());
@@ -84,8 +84,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		/* length is 1 character longer/shorter */
 		else if (word_diff == 1 || word_diff == -1)
 		{
-			vector<string> newDictionary;
-			vector< vector<string> > ans1;
 			newDictionary.assign(wordDictionary.begin(),wordDictionary.end());
 
 			/* to avoid repeated */
@@ -97,7 +95,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				continue;
 			else
 			{
-				vector<string> ans_string;
 				ans_string.push_back(cur_word);
 				ans1.insert(ans1.begin(),ans_string);
 				ans.assign(ans1.begin(),ans.end());
@@ -106,7 +103,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		}
 	}
 
-	cout << NOT.size() << endl;
+	//cout << NOT.size() << endl;
 	// Return an empty vector if you cannot find one
 	return ans;
 }
