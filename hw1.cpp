@@ -20,7 +20,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	/* begin==endWord -> end of recursive function */
 	if (beginWord == endWord)
 	{
-		ans[0].push_back(beginWord);
+		vector<string> temp_ans;
+		temp_ans.push_back(beginWord);
+		ans.push_back(temp_ans);
 		return ans;
 	}
 
@@ -53,7 +55,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				newDictionary = wordDictionary;
 
 				/* to avoid repeated */
-				newDictionary.erase(wordDictionary.begin()+i);
+				newDictionary.erase(newDictionary.begin()+i);
 				/* using recursive function to find answer */
 				ans1 = findLadders(cur_word,endWord,newDictionary);
 
@@ -64,6 +66,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					for(int ix=0;i<ans1.size();ix++)
 					{
 						ans1[ix].insert(ans1[ix].begin(),cur_word);
+						cout<<"aaaaaaaaaaaaaaaaaa"<<endl;
 						ans.push_back(ans1[ix]);
 					}
 				}
@@ -78,7 +81,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			newDictionary = wordDictionary;
 
 			/* to avoid repeated */
-			newDictionary.erase(wordDictionary.begin()+i);
+			newDictionary.erase(newDictionary.begin()+i);
 			/* using recursive function to find answer */
 			ans1 = findLadders(cur_word,endWord,newDictionary);
 
