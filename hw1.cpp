@@ -16,19 +16,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int char_diff;
 	int idx;
 	int i;
-	int flag=1;
 
-	/* check if it is end of recursive function */
-	for (idx = 0; idx < beginWord.length(); idx++)
-	{
-		if (beginWord[idx] != endWord[idx])
-		{
-			flag = 0;
-			break;
-		}
-	}
 	/* begin==endWord -> end of recursive function */
-	if (flag)
+	if (beginWord == endWord)
 	{
 		ans[0].push_back(beginWord);
 		return ans;
@@ -38,7 +28,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	for(i=0;i<wordDictionary.size();i++)
 	{
 		cur_word = wordDictionary[i];
-		word_diff = beginWord.length() - cur_word.length();
+		word_diff = beginWord.size() - cur_word.size();
 
 		/* check length */
 		if (word_diff > 1 || word_diff < -1)			
@@ -48,7 +38,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		else if (word_diff == 0)
 		{
 			char_diff = 0;
-			for (idx = 0; idx < beginWord.length(); idx++)
+			for (idx = 0; idx < beginWord.size(); idx++)
 			{
 				if (beginWord[idx] != cur_word[idx])		
 					char_diff++;
