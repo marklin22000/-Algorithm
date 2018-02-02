@@ -7,7 +7,7 @@
 #include <sys/resource.h>
 using namespace std;
 int min_ans=99;
-int first_flag=0;
+
 /****  Your homework starts here ****/
 vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary,int count){
 	vector< vector<string> > ans;
@@ -15,6 +15,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int word_diff;
 	int char_diff;
 	int i,j,idx;
+	int flag;
 
 	/* erase beginWord in wordDictionary */
 	for (i=0;i<wordDictionary.size();i++)
