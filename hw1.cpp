@@ -39,7 +39,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	{
 		if(count>min_ans)
 			return ans;
-		flag =0;
 		cur_word = wordDictionary[i];
 		word_diff = beginWord.size() - cur_word.size();
 
