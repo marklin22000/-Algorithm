@@ -14,8 +14,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	string cur_word;
 	int word_diff;
 	int char_diff;
-	int idx;
-	int i;
+	int i,j,idx;
 	int flag;
 
 	/* erase beginWord in wordDictionary */
