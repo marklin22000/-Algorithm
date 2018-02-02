@@ -76,6 +76,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				/* using recursive function to find answer */
 				if(cur_word!=endWord)
 				{
+					cout << "begin:" << beginWord<<"	";
+					cout << "cur_word:" << cur_word<<"	";
+					cout << "count:" << count << endl;
 					ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
 					if (ans1.empty())
 						continue;
