@@ -15,27 +15,22 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int word_diff;
 	int char_diff;
 	int i,j,idx;
-	int flag;
 
 	/* erase beginWord in wordDictionary */
-	if(!first_flag)
+	for (i=0;i<wordDictionary.size();i++)
 	{
-		first_flag=1;
-		for (i=0;i<wordDictionary.size();i++)
+		cur_word = wordDictionary[i];
+		word_diff = beginWord.size() - cur_word.size();
+		if(word_diff==0)
 		{
-			cur_word = wordDictionary[i];
-			word_diff = beginWord.size() - cur_word.size();
-			if(word_diff==0)
+			char_diff = 0;
+			for(j=0;j<beginWord.size();j++)
 			{
-				char_diff = 0;
-				for(j=0;j<beginWord.size();j++)
-				{
-					if (beginWord[j] != cur_word[j])		
-						char_diff++;
-				}
-				if(char_diff==0)
-					wordDictionary.erase(wordDictionary.begin()+i);
+				if (beginWord[j] != cur_word[j])		
+					char_diff++;
 			}
+			if(char_diff==0)
+				wordDictionary.erase(wordDictionary.begin()+i);
 		}
 	}
 
@@ -74,7 +69,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				cout << "begin:" << beginWord<<"		";
 				cout << "cur:" << cur_word << "			";
 				cout << "end:" << endWord << endl;
-				*/
+				*/	
 
 				/* to avoid repeated */
 				newDictionary.erase(newDictionary.begin()+i);
