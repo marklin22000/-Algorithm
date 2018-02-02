@@ -210,14 +210,21 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 }
 vector< vector<string> > append_first(vector< vector<string> > ans, string beginWord)
 {
+	int min=99;
 	for(int ix=0;ix<ans.size();ix++)
 	{
-		if(ans[ix].size()!=min_ans)
+		(ans[ix]).insert((ans[ix]).begin(),beginWord);
+		if(ans[ix].size()<min)
+			min = ans[ix].size();
+	}
+
+	for(int ix=0;ix<ans.size();ix++)
+	{
+		if(ans[ix].size()!=min)
 		{
 			ans.erase(ans.begin()+ix);
-			continue;
-		}
-		(ans[ix]).insert((ans[ix]).begin(),beginWord);
+			ix--;
+		}		
 	}
 
 	for (int ix = 0; ix < ans.size(); ix++)
