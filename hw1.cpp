@@ -85,7 +85,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				newDictionary = wordDictionary;
 
 				cout << "begin:" << beginWord<<"		";
-				cout << "cur:" << cur_word << "		";
+				cout << "cur:" << cur_word << "			";
 				cout << "end:" << endWord << endl;
 
 
@@ -168,7 +168,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			newDictionary = wordDictionary;
 
 			cout << "begin:" << beginWord<<"		";
-			cout << "cur:" << cur_word << "		";
+			cout << "cur:" << cur_word << "			";
 			cout << "end:" << endWord << endl;
 
 			/* to avoid repeated */
