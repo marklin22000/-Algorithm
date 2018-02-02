@@ -103,32 +103,31 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				/* to avoid repeated */
 				newDictionary.erase(newDictionary.begin()+i);
 				/* using recursive function to find answer */
-				ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
-
-				if (ans1.empty())
-					continue;
-				else
+				if(cur_word!=endWord)
 				{
-					cout<<"dddddddddddddddddd"<<endl;
-					cout<<"size:"<<ans1.size()<<endl;
-					for(int ix=0;ix<ans1.size();ix++)
+					ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
+					if (ans1.empty())
+						continue;
+				}
+				cout<<"dddddddddddddddddd"<<endl;
+				cout<<"size:"<<ans1.size()<<endl;
+				for(int ix=0;ix<ans1.size();ix++)
+				{
+					//vector<string> temp_ans;
+					//temp_ans.push_back(cur_word);
+					cout<< "cur_word:" <<cur_word<<endl;
+					(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
+					ans.push_back(ans1[ix]);
+					cout<<"bbbbbbbbbbbbbbbbbb"<<endl;
+				}
+				for (int ix = 0; ix < ans.size(); ix++)
+				{
+					cout << "ans[" << ix << "]: ";
+					for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
 					{
-						//vector<string> temp_ans;
-						//temp_ans.push_back(cur_word);
-						cout<< "cur_word:" <<cur_word<<endl;
-						(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
-						ans.push_back(ans1[ix]);
-						cout<<"bbbbbbbbbbbbbbbbbb"<<endl;
+						cout << (ans[ix])[iy] << " -> ";
 					}
-					for (int ix = 0; ix < ans.size(); ix++)
-					{
-						cout << "ans[" << ix << "]: ";
-						for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
-						{
-							cout << (ans[ix])[iy] << " -> ";
-						}
-						cout << (ans[ix])[(ans[ix]).size()-1] << endl;
-					}
+					cout << (ans[ix])[(ans[ix]).size()-1] << endl;
 				}
 			}
 		}
@@ -191,39 +190,48 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			/* to avoid repeated */
 			newDictionary.erase(newDictionary.begin()+i);
 			/* using recursive function to find answer */
-			ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
-
-			if (ans1.empty())
-				continue;
-			else
+			if(cur_word!=endWord)
 			{
-				cout<<"eeeeeeeeeeeeeeeeee"<<endl;
-				cout<<"size:"<<ans1.size()<<endl;
-				for(int ix=0;ix<ans1.size();ix++)
-				{
-					//vector<string> temp_ans;
-					//temp_ans.push_back(cur_word);
-					cout<< "cur_word:" <<cur_word<<endl;
-					(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
-					ans.push_back(ans1[ix]);
-					cout<<"cccccccccccccccccc"<<endl;
-				}
+				ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
+				if (ans1.empty())
+					continue;
+			}
 
-				for (int ix = 0; ix < ans.size(); ix++)
+			cout<<"eeeeeeeeeeeeeeeeee"<<endl;
+			cout<<"size:"<<ans1.size()<<endl;
+			for(int ix=0;ix<ans1.size();ix++)
+			{
+				//vector<string> temp_ans;
+				//temp_ans.push_back(cur_word);
+				cout<< "cur_word:" <<cur_word<<endl;
+				(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
+				ans.push_back(ans1[ix]);
+				cout<<"cccccccccccccccccc"<<endl;
+			}
+
+			for (int ix = 0; ix < ans.size(); ix++)
+			{
+				cout << "ans[" << ix << "]: ";
+				for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
 				{
-					cout << "ans[" << ix << "]: ";
-					for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
-					{
-						cout << (ans[ix])[iy] << " -> ";
-					}
-					cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+					cout << (ans[ix])[iy] << " -> ";
 				}
+				cout << (ans[ix])[(ans[ix]).size()-1] << endl;
 			}
 		}
 	}
 
+	for(int ix=0;ix<ans.size();ix++)
+	{
+		//vector<string> temp_ans;
+		//temp_ans.push_back(cur_word);
+		(ans[ix]).insert((ans[ix]).begin(),beginWord);
+		cout<<"cccccccccccccccccc"<<endl;
+		cout<<"zzzzzzzzzzzzzzzzzz"<<endl;
+	}
 	//cout << NOT.size() << endl;
 	// Return an empty vector if you cannot find one
+
 	return ans;
 }
 /****  Your homework ends here ****/
