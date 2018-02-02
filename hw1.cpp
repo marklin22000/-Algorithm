@@ -228,7 +228,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				min_ans = count;
 
 				vector<string> temp_ans;
-				temp_ans.push_back(beginWord);
+				temp_ans.push_back(cur_word);
 				ans.push_back(temp_ans);
 
 				for (int ix = 0; ix < ans.size(); ix++)
@@ -248,11 +248,16 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 
 	for(int ix=0;ix<ans.size();ix++)
 	{
-		//vector<string> temp_ans;
-		//temp_ans.push_back(cur_word);
 		(ans[ix]).insert((ans[ix]).begin(),beginWord);
-		cout<<"cccccccccccccccccc"<<endl;
-		cout<<"zzzzzzzzzzzzzzzzzz"<<endl;
+	}
+	for (int ix = 0; ix < ans.size(); ix++)
+	{
+		cout << "ans[" << ix << "]: ";
+		for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
+		{
+			cout << (ans[ix])[iy] << " -> ";
+		}
+		cout << (ans[ix])[(ans[ix]).size()-1] << endl;
 	}
 	//cout << NOT.size() << endl;
 	// Return an empty vector if you cannot find one
