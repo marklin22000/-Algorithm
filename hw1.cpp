@@ -203,15 +203,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		(ans[ix]).insert((ans[ix]).begin(),beginWord);
 	}
 */
-	for (int ix = 0; ix < ans.size(); ix++)
-	{
-		cout << "ans[" << ix << "]: ";
-		for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
-		{
-			cout << (ans[ix])[iy] << " -> ";
-		}
-		cout << (ans[ix])[(ans[ix]).size()-1] << endl;
-	}
 	//cout << NOT.size() << endl;
 	// Return an empty vector if you cannot find one
 
@@ -229,6 +220,15 @@ vector< vector<string> > append_first(vector< vector<string> > ans, string begin
 		(ans[ix]).insert((ans[ix]).begin(),beginWord);
 	}
 
+	for (int ix = 0; ix < ans.size(); ix++)
+	{
+		cout << "ans[" << ix << "]: ";
+		for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
+		{
+			cout << (ans[ix])[iy] << " -> ";
+		}
+		cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+	}
 	return ans;
 }
 /****  Your homework ends here ****/
