@@ -111,7 +111,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				{
 					cout<<"dddddddddddddddddd"<<endl;
 					cout<<"size:"<<ans1.size()<<endl;
-					for(int ix=0;i<ans1.size();ix++)
+					for(int ix=0;ix<ans1.size();ix++)
 					{
 						//vector<string> temp_ans;
 						//temp_ans.push_back(cur_word);
@@ -199,7 +199,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			{
 				cout<<"eeeeeeeeeeeeeeeeee"<<endl;
 				cout<<"size:"<<ans1.size()<<endl;
-				for(int ix=0;i<ans1.size();ix++)
+				for(int ix=0;ix<ans1.size();ix++)
 				{
 					//vector<string> temp_ans;
 					//temp_ans.push_back(cur_word);
