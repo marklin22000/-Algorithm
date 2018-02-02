@@ -202,11 +202,11 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	}
 
 	/* put beginWord into every answer */
-	for(int ix=0;ix<ans.size();ix++)
+/*	for(int ix=0;ix<ans.size();ix++)
 	{
 		(ans[ix]).insert((ans[ix]).begin(),beginWord);
 	}
-
+*/
 	for (int ix = 0; ix < ans.size(); ix++)
 	{
 		cout << "ans[" << ix << "]: ";
