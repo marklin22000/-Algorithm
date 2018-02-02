@@ -81,7 +81,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 						continue;
 					else
 					{
-						cout<<"dddddddddddddddddd"<<endl;
 						cout<<"size:"<<ans1.size()<<endl;
 						for(int ix=0;ix<ans1.size();ix++)
 						{
@@ -90,7 +89,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 							cout<< "cur_word:" <<cur_word<<endl;
 							(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
 							ans.push_back(ans1[ix]);
-							cout<<"bbbbbbbbbbbbbbbbbb"<<endl;
 						}
 					}
 				}
@@ -104,16 +102,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					temp_ans.push_back(cur_word);
 					ans.push_back(temp_ans);
 
-					for (int ix = 0; ix < ans.size(); ix++)
-					{
-						cout << "ans[" << ix << "]: ";
-						for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
-						{
-							cout << (ans[ix])[iy] << " -> ";
-						}
-						cout << (ans[ix])[(ans[ix]).size()-1] << endl;
-					}
-					cout<<"aaaaaaaaaaaaaaaaaa"<<endl;
 					return ans;
 				}
 			}
@@ -184,16 +172,12 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					continue;
 				else
 				{
-					cout<<"eeeeeeeeeeeeeeeeee"<<endl;
 					cout<<"size:"<<ans1.size()<<endl;
 					for(int ix=0;ix<ans1.size();ix++)
 					{
-						//vector<string> temp_ans;
-						//temp_ans.push_back(cur_word);
 						cout<< "cur_word:" <<cur_word<<endl;
 						(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
 						ans.push_back(ans1[ix]);
-						cout<<"cccccccccccccccccc"<<endl;
 					}
 				}
 			}
@@ -207,16 +191,17 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				temp_ans.push_back(cur_word);
 				ans.push_back(temp_ans);
 
-				cout<<"aaaaaaaaaaaaaaaaaa"<<endl;
 				return ans;
 			}
 		}
 	}
 
+	/* put beginWord into every answer */
 	for(int ix=0;ix<ans.size();ix++)
 	{
 		(ans[ix]).insert((ans[ix]).begin(),beginWord);
 	}
+
 	for (int ix = 0; ix < ans.size(); ix++)
 	{
 		cout << "ans[" << ix << "]: ";
