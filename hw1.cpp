@@ -6,10 +6,10 @@
 #include <unistd.h>
 #include <sys/resource.h>
 using namespace std;
-
-
+int min_ans=99;
+int first_flag=0;
 /****  Your homework starts here ****/
-vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary){
+vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary,int count){
 	vector< vector<string> > ans;
 	string cur_word;
 	int word_diff;
@@ -18,26 +18,34 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int flag;
 
 	/* erase beginWord in wordDictionary */
-	for (i=0;i<wordDictionary.size();i++)
+	if(!first_flag)
 	{
-		cur_word = wordDictionary[i];
-		word_diff = beginWord.size() - cur_word.size();
-		if(word_diff==0)
+		first_flag=1;
+		for (i=0;i<wordDictionary.size();i++)
 		{
-			char_diff = 0;
-			for(j=0;j<beginWord.size();j++)
+			cur_word = wordDictionary[i];
+			word_diff = beginWord.size() - cur_word.size();
+			if(word_diff==0)
 			{
-				if (beginWord[j] != cur_word[j])		
-					char_diff++;
+				char_diff = 0;
+				for(j=0;j<beginWord.size();j++)
+				{
+					if (beginWord[j] != cur_word[j])		
+						char_diff++;
+				}
+				if(char_diff==0)
+					wordDictionary.erase(wordDictionary.begin()+i);
 			}
-			if(char_diff==0)
-				wordDictionary.erase(wordDictionary.begin()+i);
 		}
 	}
 
 	/* begin==endWord -> end of recursive function */
 	if (beginWord == endWord)
 	{
+		if(count>min_ans)
+			return ans;
+		min_ans = count;
+
 		vector<string> temp_ans;
 		temp_ans.push_back(beginWord);
 		ans.push_back(temp_ans);
@@ -58,6 +66,8 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	/* check Dictionary if any word inside has just 1 character different from current word */
 	for(i=0;i<wordDictionary.size();i++)
 	{
+		if(count>min_ans)
+			return ans;
 		flag =0;
 		cur_word = wordDictionary[i];
 		word_diff = beginWord.size() - cur_word.size();
@@ -92,7 +102,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				/* to avoid repeated */
 				newDictionary.erase(newDictionary.begin()+i);
 				/* using recursive function to find answer */
-				ans1 = findLadders(cur_word,endWord,newDictionary);
+				ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
 
 				if (ans1.empty())
 					continue;
@@ -174,7 +184,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			/* to avoid repeated */
 			newDictionary.erase(newDictionary.begin()+i);
 			/* using recursive function to find answer */
-			ans1 = findLadders(cur_word,endWord,newDictionary);
+			ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
 
 			if (ans1.empty())
 				continue;
@@ -251,7 +261,7 @@ int main(int argc, char* argv[]){
 	vector< vector<string> > answer;
 	
 	const clock_t start_time = clock();
-	answer = findLadders(beginWord, endWord, wordDictionary);
+	answer = findLadders(beginWord, endWord, wordDictionary,0);
 	double run_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
 
 	
