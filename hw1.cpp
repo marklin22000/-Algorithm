@@ -16,6 +16,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int char_diff;
 	int idx;
 	int i;
+	int flag;
 
 	/* begin==endWord -> end of recursive function */
 	if (beginWord == endWord)
@@ -40,6 +41,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	/* check Dictionary if any word inside has just 1 character different from current word */
 	for(i=0;i<wordDictionary.size();i++)
 	{
+		flag =0;
 		cur_word = wordDictionary[i];
 		word_diff = beginWord.size() - cur_word.size();
 
@@ -99,8 +101,50 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			}
 		}
 
-		/* length is 1 character longer/shorter */
-		else if (word_diff == 1 || word_diff == -1)
+		/* length is 1 character longer */
+		else if (word_diff == 1)
+		{
+			int str1_idx = 0;
+			char_diff = 0;
+			for (int idx = 0; idx < cur_word.length(); idx++)
+			{
+				if (beginWord[str1_idx] != cur_word[idx])
+				{
+					char_diff++;
+					idx--;
+				}
+				str1_idx++;
+				
+				if (char_diff > 1)
+				{
+					flag = 1;
+					break;
+				}
+			}
+		}
+		/* length is 1 character shorter */
+		else if (word_diff == -1)
+		{
+			int str2_idx = 0;
+			char_diff = 0;
+			for (int idx = 0; idx < beginWord.length(); idx++)
+			{
+				if (beginWord[idx] != cur_word[str2_idx])
+				{
+					char_diff++;
+					idx--;
+				}
+				str2_idx++;
+				
+				if (char_diff > 1)
+				{
+					flag = 1;
+					break;
+				}
+			}
+		}
+		/* length is 1 character shorter */
+		if ( (word_diff == 1 || word_diff == -1) && (!flag) )
 		{
 			vector<string> newDictionary;
 			vector< vector<string> > ans1;
