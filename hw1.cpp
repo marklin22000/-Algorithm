@@ -84,12 +84,10 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 						continue;
 					else
 					{
-						cout<<"size:"<<ans1.size()<<endl;
 						for(int ix=0;ix<ans1.size();ix++)
 						{
 							//vector<string> temp_ans;
 							//temp_ans.push_back(cur_word);
-							cout<< "word_diff="<<word_diff<<endl;
 							cout<< "cur_word:" <<cur_word<<endl;
 							(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
 							ans.push_back(ans1[ix]);
@@ -176,8 +174,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					continue;
 				else
 				{
-					cout<<"size:"<<ans1.size()<<endl;
-					cout<< "word_diff="<<word_diff<<endl;
 					for(int ix=0;ix<ans1.size();ix++)
 					{
 						cout<< "cur_word:" <<cur_word<<endl;
@@ -218,6 +214,20 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	}
 	//cout << NOT.size() << endl;
 	// Return an empty vector if you cannot find one
+
+	return ans;
+}
+vector< vector<string> > append_first(vector< vector<string> > ans, string beginWord)
+{
+	for(int ix=0;ix<ans.size();ix++)
+	{
+		if(ans[ix].size()!=min_ans)
+		{
+			ans.erase(ans.begin()+ix);
+			continue;
+		}
+		(ans[ix]).insert((ans[ix]).begin(),beginWord);
+	}
 
 	return ans;
 }
@@ -268,6 +278,7 @@ int main(int argc, char* argv[]){
 	
 	const clock_t start_time = clock();
 	answer = findLadders(beginWord, endWord, wordDictionary,0);
+	answer = append_first(answer,beginWord);
 	double run_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
 
 	
