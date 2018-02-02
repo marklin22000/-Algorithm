@@ -76,9 +76,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				{
 					for(int ix=0;i<ans1.size();ix++)
 					{
-						vector<string> temp_ans;
-						temp_ans.push_back(cur_word);
-						ans1[ix].insert(ans1[ix].begin(),temp_ans);
+						//vector<string> temp_ans;
+						//temp_ans.push_back(cur_word);
+						(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
 						ans.push_back(ans1[ix]);
 					}
 					for (int ix = 0; ix < ans.size(); ix++)
@@ -112,9 +112,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			{
 				for(int ix=0;i<ans1.size();ix++)
 				{
-					vector<string> temp_ans;
-					temp_ans.push_back(cur_word);
-					ans1[ix].insert(ans1[ix].begin(),temp_ans);
+					//vector<string> temp_ans;
+					//temp_ans.push_back(cur_word);
+					(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
 					ans.push_back(ans1[ix]);
 				}
 
