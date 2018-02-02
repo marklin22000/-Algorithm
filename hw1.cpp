@@ -39,30 +39,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		}
 	}
 
-	/* begin==endWord -> end of recursive function */
-	if (beginWord == endWord)
-	{
-		if(count>min_ans)
-			return ans;
-		min_ans = count;
-
-		vector<string> temp_ans;
-		temp_ans.push_back(beginWord);
-		ans.push_back(temp_ans);
-
-		for (int ix = 0; ix < ans.size(); ix++)
-		{
-			cout << "ans[" << ix << "]: ";
-			for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
-			{
-				cout << (ans[ix])[iy] << " -> ";
-			}
-			cout << (ans[ix])[(ans[ix]).size()-1] << endl;
-		}
-		cout<<"aaaaaaaaaaaaaaaaaa"<<endl;
-		return ans;
-	}
-
 	/* check Dictionary if any word inside has just 1 character different from current word */
 	for(i=0;i<wordDictionary.size();i++)
 	{
@@ -108,26 +84,51 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
 					if (ans1.empty())
 						continue;
-				}
-				cout<<"dddddddddddddddddd"<<endl;
-				cout<<"size:"<<ans1.size()<<endl;
-				for(int ix=0;ix<ans1.size();ix++)
-				{
-					//vector<string> temp_ans;
-					//temp_ans.push_back(cur_word);
-					cout<< "cur_word:" <<cur_word<<endl;
-					(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
-					ans.push_back(ans1[ix]);
-					cout<<"bbbbbbbbbbbbbbbbbb"<<endl;
-				}
-				for (int ix = 0; ix < ans.size(); ix++)
-				{
-					cout << "ans[" << ix << "]: ";
-					for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
+					else
 					{
-						cout << (ans[ix])[iy] << " -> ";
+						cout<<"dddddddddddddddddd"<<endl;
+						cout<<"size:"<<ans1.size()<<endl;
+						for(int ix=0;ix<ans1.size();ix++)
+						{
+							//vector<string> temp_ans;
+							//temp_ans.push_back(cur_word);
+							cout<< "cur_word:" <<cur_word<<endl;
+							(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
+							ans.push_back(ans1[ix]);
+							cout<<"bbbbbbbbbbbbbbbbbb"<<endl;
+						}
+						for (int ix = 0; ix < ans.size(); ix++)
+						{
+							cout << "ans[" << ix << "]: ";
+							for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
+							{
+								cout << (ans[ix])[iy] << " -> ";
+							}
+							cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+						}
 					}
-					cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+				}
+				else
+				{
+					if(count>min_ans)
+						return ans;
+					min_ans = count;
+
+					vector<string> temp_ans;
+					temp_ans.push_back(beginWord);
+					ans.push_back(temp_ans);
+
+					for (int ix = 0; ix < ans.size(); ix++)
+					{
+						cout << "ans[" << ix << "]: ";
+						for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
+						{
+							cout << (ans[ix])[iy] << " -> ";
+						}
+						cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+					}
+					cout<<"aaaaaaaaaaaaaaaaaa"<<endl;
+					return ans;
 				}
 			}
 		}
@@ -195,28 +196,52 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
 				if (ans1.empty())
 					continue;
-			}
-
-			cout<<"eeeeeeeeeeeeeeeeee"<<endl;
-			cout<<"size:"<<ans1.size()<<endl;
-			for(int ix=0;ix<ans1.size();ix++)
-			{
-				//vector<string> temp_ans;
-				//temp_ans.push_back(cur_word);
-				cout<< "cur_word:" <<cur_word<<endl;
-				(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
-				ans.push_back(ans1[ix]);
-				cout<<"cccccccccccccccccc"<<endl;
-			}
-
-			for (int ix = 0; ix < ans.size(); ix++)
-			{
-				cout << "ans[" << ix << "]: ";
-				for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
+				else
 				{
-					cout << (ans[ix])[iy] << " -> ";
+					cout<<"eeeeeeeeeeeeeeeeee"<<endl;
+					cout<<"size:"<<ans1.size()<<endl;
+					for(int ix=0;ix<ans1.size();ix++)
+					{
+						//vector<string> temp_ans;
+						//temp_ans.push_back(cur_word);
+						cout<< "cur_word:" <<cur_word<<endl;
+						(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
+						ans.push_back(ans1[ix]);
+						cout<<"cccccccccccccccccc"<<endl;
+					}
+
+					for (int ix = 0; ix < ans.size(); ix++)
+					{
+						cout << "ans[" << ix << "]: ";
+						for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
+						{
+							cout << (ans[ix])[iy] << " -> ";
+						}
+						cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+					}
 				}
-				cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+			}
+			else
+			{
+				if(count>min_ans)
+					return ans;
+				min_ans = count;
+
+				vector<string> temp_ans;
+				temp_ans.push_back(beginWord);
+				ans.push_back(temp_ans);
+
+				for (int ix = 0; ix < ans.size(); ix++)
+				{
+					cout << "ans[" << ix << "]: ";
+					for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
+					{
+						cout << (ans[ix])[iy] << " -> ";
+					}
+					cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+				}
+				cout<<"aaaaaaaaaaaaaaaaaa"<<endl;
+				return ans;
 			}
 		}
 	}
