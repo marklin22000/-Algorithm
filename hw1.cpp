@@ -76,19 +76,19 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				{
 					for(int ix=0;i<ans1.size();ix++)
 					{
-						ans1[ix].insert(ans1[ix].begin(),cur_word);
+						vector<string> temp_ans;
+						temp_ans.push_back(cur_word);
+						ans1[ix].insert(ans1[ix].begin(),temp_ans);
 						ans.push_back(ans1[ix]);
-
-
-						for (int ix = 0; ix < ans.size(); ix++)
+					}
+					for (int ix = 0; ix < ans.size(); ix++)
+					{
+						cout << "ans[" << ix << "]: ";
+						for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
 						{
-							cout << "ans[" << ix << "]: ";
-							for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
-							{
-								cout << (ans[ix])[iy] << " -> ";
-							}
-							cout << (ans[ix])[(ans[ix]).size()-1] << endl;
+							cout << (ans[ix])[iy] << " -> ";
 						}
+						cout << (ans[ix])[(ans[ix]).size()-1] << endl;
 					}
 				}
 			}
@@ -112,7 +112,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			{
 				for(int ix=0;i<ans1.size();ix++)
 				{
-					ans1[ix].insert(ans1[ix].begin(),cur_word);
+					vector<string> temp_ans;
+					temp_ans.push_back(cur_word);
+					ans1[ix].insert(ans1[ix].begin(),temp_ans);
 					ans.push_back(ans1[ix]);
 				}
 
