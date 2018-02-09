@@ -52,13 +52,13 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		/* check length */
 		if (word_diff > 1 || word_diff < -1)			
 			continue;
-		cout <<cur_word<<endl;
 		/* length is match, check different character */
 		else 
 		{
 			/* check current word and end word's diff */
 			end_char_diff=0;
 
+			cout <<cur_word<<endl;
 			if(diff_end==0)
 			{
 				for (idx = 0; idx < cur_word.size(); idx++)
