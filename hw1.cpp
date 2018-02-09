@@ -39,7 +39,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			}		
 		}
 	}
-
+	cout<< "test1"<<endl;
 	/* check Dictionary if any word inside has just 1 character different from current word */
 	for(i=0;i<wordDictionary.size();i++)
 	{
@@ -99,6 +99,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			if(end_char_diff > pre_diff_end)
 				continue;
 
+			cout<< "test2"<<endl;
 			if (word_diff == 0)
 			{
 				char_diff = 0;
