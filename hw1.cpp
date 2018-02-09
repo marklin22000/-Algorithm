@@ -6,16 +6,17 @@
 #include <unistd.h>
 #include <sys/resource.h>
 using namespace std;
-int min_ans=99;
+int min_ans=999;
 
 /****  Your homework starts here ****/
-vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary,int count){
+vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary,int count,int pre_diff_end){
 	vector< vector<string> > ans;
 	string cur_word;
 	int word_diff;
 	int char_diff;
 	int i,j,idx;
 	int flag;
+	int diff_end;
 
 	/* erase beginWord in wordDictionary */
 	for (i=0;i<wordDictionary.size();i++)
@@ -42,24 +43,161 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			return ans;
 		cur_word = wordDictionary[i];
 		word_diff = beginWord.size() - cur_word.size();
+		diff_end = cur_word.size() - endWord.size();
+		flag=0;
 
 		/* check length */
 		if (word_diff > 1 || word_diff < -1)			
 			continue;
 
 		/* length is match, check different character */
-		else if (word_diff == 0)
+		else 
 		{
-			char_diff = 0;
-			for (idx = 0; idx < beginWord.size(); idx++)
+			/* check current word and end word's diff */
+			end_char_diff=0;
+			if(diff_end==0)
 			{
-				if (beginWord[idx] != cur_word[idx])		
-					char_diff++;
+				for (idx = 0; idx < cur_word.size(); idx++)
+				{
+					if (cur_word[idx] != endWord[idx])		
+						end_char_diff++;
+				}
 			}
-			
-			if (char_diff != 1)
+			else if (diff_end == 1)
+			{
+				int str1_idx_end = 0;
+				for (idx = 0; idx < endWord.length(); idx++)
+				{
+					if (cur_word[str1_idx_end] != endWord[idx])
+					{
+						end_char_diff++;
+						idx--;
+					}
+					str1_idx_end++;
+				}
+			}
+			else if (diff_end == -1)
+			{
+				int str2_idx_end = 0;
+				for (idx = 0; idx < cur_word.length(); idx++)
+				{
+					if (cur_word[idx] != endWord[str2_idx_end])
+					{
+						end_char_diff++;
+						idx--;
+					}
+					str2_idx_end++;
+				}
+			}
+			/* this word is not approaching endWord */
+			if(end_char_diff > pre_diff_end)
 				continue;
-			else					
+
+			if (word_diff == 0)
+			{
+				char_diff = 0;
+				for (idx = 0; idx < beginWord.size(); idx++)
+				{
+					if (beginWord[idx] != cur_word[idx])		
+						char_diff++;
+				}
+				
+				if (char_diff != 1)
+					continue;
+				else					
+				{
+					vector<string> newDictionary;
+					vector< vector<string> > ans1;
+					newDictionary = wordDictionary;
+
+					/*
+					cout << "begin:" << beginWord<<"		";
+					cout << "cur:" << cur_word << "			";
+					cout << "end:" << endWord << endl;
+					*/	
+
+					/* to avoid repeated */
+					newDictionary.erase(newDictionary.begin()+i);
+					/* using recursive function to find answer */
+					if(cur_word!=endWord)
+					{
+						//cout << "begin:" << beginWord<<"	";
+						//cout << "cur_word:" << cur_word<<"	";
+						//cout << "count:" << count << endl;
+						ans1 = findLadders(cur_word,endWord,newDictionary,count+1,end_char_diff);
+						if (ans1.empty())
+							continue;
+						else
+						{
+							for(int ix=0;ix<ans1.size();ix++)
+							{
+								//vector<string> temp_ans;
+								//temp_ans.push_back(cur_word);
+								//cout<< "cur_word:" <<cur_word<<endl;
+								(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
+								ans.push_back(ans1[ix]);
+							}
+						}
+					}
+					else
+					{
+						if(count>min_ans)
+							return ans;
+						min_ans = count;
+
+						vector<string> temp_ans;
+						temp_ans.push_back(cur_word);
+						ans.push_back(temp_ans);
+
+						return ans;
+					}
+				}
+			}
+
+			/* length is 1 character longer */
+			else if (word_diff == 1)
+			{
+				int str1_idx = 0;
+				char_diff = 0;
+				for (idx = 0; idx < cur_word.length(); idx++)
+				{
+					if (beginWord[str1_idx] != cur_word[idx])
+					{
+						char_diff++;
+						idx--;
+					}
+					str1_idx++;
+					
+					if (char_diff > 1)
+					{
+						flag = 1;
+						break;
+					}
+				}
+			}
+			/* length is 1 character shorter */
+			else if (word_diff == -1)
+			{
+				int str2_idx = 0;
+				char_diff = 0;
+				for (idx = 0; idx < beginWord.length(); idx++)
+				{
+					if (beginWord[idx] != cur_word[str2_idx])
+					{
+						char_diff++;
+						idx--;
+					}
+					str2_idx++;
+					
+					if (char_diff > 1)
+					{
+						flag = 1;
+						break;
+					}
+				}
+			}
+
+			if ( (word_diff == 1 || word_diff == -1) && (!flag) )
 			{
 				vector<string> newDictionary;
 				vector< vector<string> > ans1;
@@ -69,25 +207,20 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				cout << "begin:" << beginWord<<"		";
 				cout << "cur:" << cur_word << "			";
 				cout << "end:" << endWord << endl;
-				*/	
+				*/
 
 				/* to avoid repeated */
 				newDictionary.erase(newDictionary.begin()+i);
 				/* using recursive function to find answer */
 				if(cur_word!=endWord)
 				{
-					//cout << "begin:" << beginWord<<"	";
-					//cout << "cur_word:" << cur_word<<"	";
-					//cout << "count:" << count << endl;
-					ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
+					ans1 = findLadders(cur_word,endWord,newDictionary,count+1,end_char_diff);
 					if (ans1.empty())
 						continue;
 					else
 					{
 						for(int ix=0;ix<ans1.size();ix++)
 						{
-							//vector<string> temp_ans;
-							//temp_ans.push_back(cur_word);
 							//cout<< "cur_word:" <<cur_word<<endl;
 							(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
 							ans.push_back(ans1[ix]);
@@ -106,93 +239,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 
 					return ans;
 				}
-			}
-		}
-
-		/* length is 1 character longer */
-		else if (word_diff == 1)
-		{
-			int str1_idx = 0;
-			char_diff = 0;
-			for (int idx = 0; idx < cur_word.length(); idx++)
-			{
-				if (beginWord[str1_idx] != cur_word[idx])
-				{
-					char_diff++;
-					idx--;
-				}
-				str1_idx++;
-				
-				if (char_diff > 1)
-				{
-					flag = 1;
-					break;
-				}
-			}
-		}
-		/* length is 1 character shorter */
-		else if (word_diff == -1)
-		{
-			int str2_idx = 0;
-			char_diff = 0;
-			for (int idx = 0; idx < beginWord.length(); idx++)
-			{
-				if (beginWord[idx] != cur_word[str2_idx])
-				{
-					char_diff++;
-					idx--;
-				}
-				str2_idx++;
-				
-				if (char_diff > 1)
-				{
-					flag = 1;
-					break;
-				}
-			}
-		}
-		/* length is 1 character shorter */
-		if ( (word_diff == 1 || word_diff == -1) && (!flag) )
-		{
-			vector<string> newDictionary;
-			vector< vector<string> > ans1;
-			newDictionary = wordDictionary;
-
-			/*
-			cout << "begin:" << beginWord<<"		";
-			cout << "cur:" << cur_word << "			";
-			cout << "end:" << endWord << endl;
-			*/
-
-			/* to avoid repeated */
-			newDictionary.erase(newDictionary.begin()+i);
-			/* using recursive function to find answer */
-			if(cur_word!=endWord)
-			{
-				ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
-				if (ans1.empty())
-					continue;
-				else
-				{
-					for(int ix=0;ix<ans1.size();ix++)
-					{
-						//cout<< "cur_word:" <<cur_word<<endl;
-						(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
-						ans.push_back(ans1[ix]);
-					}
-				}
-			}
-			else
-			{
-				if(count>min_ans)
-					return ans;
-				min_ans = count;
-
-				vector<string> temp_ans;
-				temp_ans.push_back(cur_word);
-				ans.push_back(temp_ans);
-
-				return ans;
 			}
 		}
 	}
@@ -285,7 +331,7 @@ int main(int argc, char* argv[]){
 	vector< vector<string> > answer;
 	
 	const clock_t start_time = clock();
-	answer = findLadders(beginWord, endWord, wordDictionary,0);
+	answer = findLadders(beginWord, endWord, wordDictionary,0,99);
 	answer = append_first(answer,beginWord);
 	double run_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
 
