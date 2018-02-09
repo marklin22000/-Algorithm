@@ -125,19 +125,13 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 
 	for(i=0;i<ans_option.size();i++)
 	{
-		/*
-		cout << "begin:" << beginWord<<"		";
-		cout << "cur:" << cur_word << "			";
-		cout << "end:" << endWord << endl;
-		*/	
-
 		/* using recursive function to find answer */
-		if(cur_word!=endWord)
+		if(ans_option[i]!=endWord)
 		{
 			//cout << "begin:" << beginWord<<"	";
 			//cout << "cur_word:" << cur_word<<"	";
 			//cout << "count:" << count << endl;
-			ans1 = findLadders(cur_word,endWord,newDictionary,count+1);
+			ans1 = findLadders(ans_option[i],endWord,newDictionary,count+1);
 			if (ans1.empty())
 				continue;
 			else
@@ -147,7 +141,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					//vector<string> temp_ans;
 					//temp_ans.push_back(cur_word);
 					//cout<< "cur_word:" <<cur_word<<endl;
-					(ans1[ix]).insert((ans1[ix]).begin(),cur_word);
+					(ans1[ix]).insert((ans1[ix]).begin(),ans_option[i]);
 					ans.push_back(ans1[ix]);
 				}
 			}
@@ -159,7 +153,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			min_ans = count;
 
 			vector<string> temp_ans;
-			temp_ans.push_back(cur_word);
+			temp_ans.push_back(ans_option[i]);
 			ans.push_back(temp_ans);
 
 			return ans;
