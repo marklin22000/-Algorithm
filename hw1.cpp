@@ -18,6 +18,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int flag;
 	int diff_end;
 	int end_char_diff;
+
 	/* erase beginWord in wordDictionary */
 	for (i=0;i<wordDictionary.size();i++)
 	{
@@ -32,7 +33,10 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					char_diff++;
 			}
 			if(char_diff==0)
+			{
 				wordDictionary.erase(wordDictionary.begin()+i);
+				i--;
+			}		
 		}
 	}
 
@@ -55,6 +59,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		{
 			/* check current word and end word's diff */
 			end_char_diff=0;
+
 			if(diff_end==0)
 			{
 				for (idx = 0; idx < cur_word.size(); idx++)
@@ -89,6 +94,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					str2_idx_end++;
 				}
 			}
+
 			/* this word is not approaching endWord */
 			if(end_char_diff > pre_diff_end)
 				continue;
@@ -331,7 +337,7 @@ int main(int argc, char* argv[]){
 	vector< vector<string> > answer;
 	
 	const clock_t start_time = clock();
-	answer = findLadders(beginWord, endWord, wordDictionary,0,99);
+	answer = findLadders(beginWord, endWord, wordDictionary,0 ,99 );
 	answer = append_first(answer,beginWord);
 	double run_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
 
