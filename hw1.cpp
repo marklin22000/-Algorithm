@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <sys/resource.h>
 using namespace std;
-int min_ans=999;
+int min_ans=99999;
 
 /****  Your homework starts here ****/
 vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary,int count){
