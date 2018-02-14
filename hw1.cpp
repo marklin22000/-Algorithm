@@ -14,7 +14,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	string cur_word;
 	int word_diff;
 	int char_diff;
-	int i,j,idx;
+	int i,j,idx,ia;
 	int flag;
 	vector< string > ans_option;
 	vector< string > newDictionary;
@@ -34,8 +34,11 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	newDictionary = wordDictionary;
 
 	/* check Dictionary if any word inside has just 1 character different from current word */
-	for(i=0,ia=0;i<wordDictionary.size();i++,ia++;)
+	ia=0;
+	for(i=0;i<wordDictionary.size();i++;)
 	{
+		flag=0;
+		ia++;
 		if(count>min_ans)
 			return ans;
 		cur_word = wordDictionary[i];
