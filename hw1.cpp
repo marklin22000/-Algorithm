@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <sys/resource.h>
 using namespace std;
-int min_ans=99;
+int min_ans=999;
 
 /****  Your homework starts here ****/
 vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary,int count){
@@ -24,24 +24,17 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	for (i=0;i<wordDictionary.size();i++)
 	{
 		cur_word = wordDictionary[i];
-		word_diff = beginWord.size() - cur_word.size();
-		if(word_diff==0)
+		if(!beginWord.compare(cur_word))
 		{
-			char_diff = 0;
-			for(j=0;j<beginWord.size();j++)
-			{
-				if (beginWord[j] != cur_word[j])		
-					char_diff++;
-			}
-			if(char_diff==0)
-				wordDictionary.erase(wordDictionary.begin()+i);
-		}
+			wordDictionary.erase(wordDictionary.begin()+i);
+			i--;
+		}		
 	}
 
 	newDictionary = wordDictionary;
 
 	/* check Dictionary if any word inside has just 1 character different from current word */
-	for(i=0;i<wordDictionary.size();i++)
+	for(i=0,ia=0;i<wordDictionary.size();i++,ia++;)
 	{
 		if(count>min_ans)
 			return ans;
@@ -68,7 +61,8 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			{
 				ans_option.push_back(cur_word);
 				/* to avoid repeated */
-				newDictionary.erase(newDictionary.begin()+i);
+				newDictionary.erase(newDictionary.begin()+ia);
+				ia--;
 			}			
 		}
 
@@ -119,7 +113,8 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		{
 			ans_option.push_back(cur_word);
 			/* to avoid repeated */
-			newDictionary.erase(newDictionary.begin()+i);
+			newDictionary.erase(newDictionary.begin()+ia);
+			ia--;
 		}
 	}
 
