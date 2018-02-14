@@ -16,6 +16,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int char_diff;
 	int i,j,idx,ia;
 	int flag;
+	int aa,aaa;
 	vector< string > ans_option;
 	vector< string > newDictionary;
 	vector< vector<string> > ans1;
@@ -40,9 +41,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		flag=0;
 		if(count>min_ans)
 		{
-			for (int aa = 0; aa < ans.size(); aa++){
-				cout << "ans[" << i << "]: ";
-				for (int aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
+			for (aa = 0; aa < ans.size(); aa++){
+				cout << "ans[" << aa << "]: ";
+				for (aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
 					cout << (ans[aa])[aaa] << " -> ";
 				}
 				cout << (ans[aa])[(ans[aaa]).size()-1] << endl;
@@ -157,9 +158,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		{
 			if(count>min_ans)
 			{
-				for (int aa = 0; aa < ans.size(); aa++){
-					cout << "ans[" << i << "]: ";
-					for (int aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
+				for (aa = 0; aa < ans.size(); aa++){
+					cout << "ans[" << aa << "]: ";
+					for (aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
 						cout << (ans[aa])[aaa] << " -> ";
 					}
 					cout << (ans[aa])[(ans[aaa]).size()-1] << endl;
@@ -173,9 +174,9 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			temp_ans.push_back(ans_option[i]);
 			ans.push_back(temp_ans);
 
-			for (int aa = 0; aa < ans.size(); aa++){
-				cout << "ans[" << i << "]: ";
-				for (int aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
+			for (aa = 0; aa < ans.size(); aa++){
+				cout << "ans[" << aa << "]: ";
+				for (aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
 					cout << (ans[aa])[aaa] << " -> ";
 				}
 				cout << (ans[aa])[(ans[aaa]).size()-1] << endl;
