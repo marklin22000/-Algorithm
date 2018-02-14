@@ -35,7 +35,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 
 	/* check Dictionary if any word inside has just 1 character different from current word */
 	ia=0;
-	for(i=0;i<wordDictionary.size();i++;)
+	for(i=0;i<wordDictionary.size();i++)
 	{
 		flag=0;
 		ia++;
