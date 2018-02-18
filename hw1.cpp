@@ -190,14 +190,14 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			itemp--;
 			vector< string > temp;
 			temp.push_back(ans_option[i]);
-			while(idx != (ans[itemp]).size() )
+			while(idx < (ans[itemp]).size() )
 			{
 				temp.push_back(ans[itemp][idx]);
 				idx++;
 			}
 			continue;
 		}
-		
+
 		/* using recursive function to find answer */
 		ans1 = findLadders(ans_option[i],endWord,newDictionary,count+1);
 		if (ans1.empty())
