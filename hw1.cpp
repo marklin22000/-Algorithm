@@ -168,7 +168,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			}
 		}
 		
-		find_flag = 0;
+		/*find_flag = 0;
 		for(itemp=0; itemp<ans.size(); itemp++)
 		{
 			if(!find_flag)
@@ -199,7 +199,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			ans.push_back(temp);
 			cout<<"aaaaa"<<endl;
 			continue;
-		}
+		}*/
 
 		/* using recursive function to find answer */
 		ans1 = findLadders(ans_option[i],endWord,newDictionary,count+1);
