@@ -196,6 +196,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				temp.push_back(ans[itemp][idx]);
 				idx++;
 			}
+			ans.push_back(temp);
 			continue;
 		}
 
