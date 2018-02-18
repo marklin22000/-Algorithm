@@ -139,7 +139,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		{
 			for(itemp=0;i<newDictionary.size();itemp++)
 			{
-				if(newDictionary[itemp].compare(not_ans[inot]))
+				if(!newDictionary[itemp].compare(not_ans[inot]))
 				{
 					newDictionary.erase(newDictionary.begin()+itemp);
 					itemp--;
