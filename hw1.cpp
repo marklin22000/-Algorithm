@@ -125,7 +125,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		/* length is 1 character shorter */
 		if ( (word_diff == 1 || word_diff == -1) && (!flag) )
 		{
-			ans_option.push_back(cur_word);
+			ans_option.pushback(cur_word);
 			/* to avoid repeated */
 			newDictionary.erase(newDictionary.begin()+ia);
 			ia--;
