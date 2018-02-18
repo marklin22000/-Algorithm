@@ -169,11 +169,11 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		}
 		
 		find_flag = 0;
-		for(itemp=0;i<ans.size();itemp++)
+		for(itemp=0; itemp<ans.size(); itemp++)
 		{
 			if(!find_flag)
 			{
-				for(idx=0;idx<(ans[itemp]).size();idx++)
+				for(idx=0; idx<(ans[itemp]).size(); idx++)
 				{
 					if(!(ans[itemp])[idx].compare(ans_option[i]))
 					{
@@ -185,6 +185,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			else
 				break;
 		}
+
 		if(find_flag)
 		{
 			itemp--;
