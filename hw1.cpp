@@ -134,44 +134,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 
 	for(i=0;i<ans_option.size();i++)
 	{
-		/* erase the word that had been tried */
-		for(inot=0;inot<not_ans.size();inot++)
-		{
-			for(itemp=0;itemp<newDictionary.size();itemp++)
-			{
-				if(!newDictionary[itemp].compare(not_ans[inot]))
-				{
-					newDictionary.erase(newDictionary.begin()+itemp);
-					itemp--;
-				}
-			}
-		}
-		/* using recursive function to find answer */
-		if(ans_option[i]!=endWord)
-		{
-			//cout << "begin:" << beginWord<<"	";
-			//cout << "cur_word:" << cur_word<<"	";
-			//cout << "count:" << count << endl;
-			ans1 = findLadders(ans_option[i],endWord,newDictionary,count+1);
-			if (ans1.empty())
-			{
-				not_ans.push_back(ans_option[i]);
-				continue;
-			}
-				
-			else
-			{
-				for(int ix=0;ix<ans1.size();ix++)
-				{
-					//vector<string> temp_ans;
-					//temp_ans.push_back(cur_word);
-					//cout<< "cur_word:" <<cur_word<<endl;
-					(ans1[ix]).insert((ans1[ix]).begin(),ans_option[i]);
-					ans.push_back(ans1[ix]);
-				}
-			}
-		}
-		else
+		if(ans_option[i]==endWord)
 		{
 			if(count>min_ans)
 				return ans;
@@ -184,6 +147,45 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 
 			cout <<"count="<< count<<endl;
 			return ans;
+		}
+	}
+
+	for(i=0;i<ans_option.size();i++)
+	{
+		/* erase the word that had been tried */
+		for(inot=0;inot<not_ans.size();inot++)
+		{
+			for(itemp=0;itemp<newDictionary.size();itemp++)
+			{
+				if(!newDictionary[itemp].compare(not_ans[inot]))
+				{
+					newDictionary.erase(newDictionary.begin()+itemp);
+					itemp--;
+				}
+			}
+		}
+		
+		/* using recursive function to find answer */
+		//cout << "begin:" << beginWord<<"	";
+		//cout << "cur_word:" << cur_word<<"	";
+		//cout << "count:" << count << endl;
+		ans1 = findLadders(ans_option[i],endWord,newDictionary,count+1);
+		if (ans1.empty())
+		{
+			not_ans.push_back(ans_option[i]);
+			continue;
+		}
+			
+		else
+		{
+			for(int ix=0;ix<ans1.size();ix++)
+			{
+				//vector<string> temp_ans;
+				//temp_ans.push_back(cur_word);
+				//cout<< "cur_word:" <<cur_word<<endl;
+				(ans1[ix]).insert((ans1[ix]).begin(),ans_option[i]);
+				ans.push_back(ans1[ix]);
+			}
 		}
 	}
 
