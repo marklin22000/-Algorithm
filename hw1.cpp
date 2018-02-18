@@ -174,16 +174,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		else
 		{
 			if(count>min_ans)
-			{
-				for (aa = 0; aa < ans.size(); aa++){
-					cout << "ans[" << aa << "]: ";
-					for (aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
-						cout << (ans[aa])[aaa] << " -> ";
-					}
-					cout << (ans[aa])[(ans[aaa]).size()-1] << endl;
-				}
 				return ans;
-			}
 				
 			min_ans = count;
 
@@ -191,13 +182,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			temp_ans.push_back(ans_option[i]);
 			ans.push_back(temp_ans);
 
-			for (aa = 0; aa < ans.size(); aa++){
-				cout << "ans[" << aa << "]: ";
-				for (aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
-					cout << (ans[aa])[aaa] << " -> ";
-				}
-				cout << (ans[aa])[(ans[aaa]).size()-1] << endl;
-			}
+			cout <<"count="<< count<<endl;
 			return ans;
 		}
 	}
