@@ -16,7 +16,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int word_diff;
 	int char_diff;
 	int i,j,idx,ia,inot,itemp;
-	int flag;
+	int flag,find_flag;
 	int aa,aaa;
 	vector< string > ans_option;
 	vector< string > newDictionary;
@@ -132,6 +132,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		}
 	}
 
+	/* check if answer option has endWord */
 	for(i=0;i<ans_option.size();i++)
 	{
 		if(ans_option[i]==endWord)
@@ -165,6 +166,36 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 					itemp--;
 				}
 			}
+		}
+		
+		find_flag = 0;
+		for(itemp=0;i<ans.size();itemp++)
+		{
+			if(!find_flag)
+			{
+				for(idx=0;idx<(ans[itemp]).size();idx++)
+				{
+					if(!(ans[itemp])[idx].compare(ans_option[i]))
+					{
+						find_flag =1;
+						break;
+					}
+				}
+			}
+			else
+				break;
+		}
+		if(find_flag)
+		{
+			itemp--;
+			vector< string > temp;
+			temp.push_back(ans_option[i]);
+			while(idx != (ans[itemp]).size() )
+			{
+				temp.push_back(ans[itemp][idx]);
+				idx++;
+			}
+			continue;
 		}
 		
 		/* using recursive function to find answer */
