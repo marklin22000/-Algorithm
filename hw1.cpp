@@ -210,13 +210,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 */
 	//cout << NOT.size() << endl;
 	// Return an empty vector if you cannot find one
-	for (aa = 0; aa < ans.size(); aa++){
-		cout << "ans[" << aa << "]: ";
-		for (aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
-			cout << (ans[aa])[aaa] << " -> ";
-		}
-		cout << (ans[aa])[(ans[aaa]).size()-1] << endl;
-	}
+
 	return ans;
 }
 vector< vector<string> > append_first(vector< vector<string> > ans, string beginWord)
