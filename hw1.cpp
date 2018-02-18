@@ -7,6 +7,7 @@
 #include <sys/resource.h>
 using namespace std;
 int min_ans=99999;
+vector< string > not_ans;
 
 /****  Your homework starts here ****/
 vector< vector<string> > findLadders(string beginWord, string endWord, vector<string>& wordDictionary,int count){
@@ -14,7 +15,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	string cur_word;
 	int word_diff;
 	int char_diff;
-	int i,j,idx,ia;
+	int i,j,idx,ia,inot,itemp;
 	int flag;
 	int aa,aaa;
 	vector< string > ans_option;
@@ -133,6 +134,18 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 
 	for(i=0;i<ans_option.size();i++)
 	{
+		/* erase the word that had been tried */
+		for(inot=0;inot<not_ans.size();inot++)
+		{
+			for(itemp=0;i<newDictionary.size();itemp++)
+			{
+				if(newDictionary[itemp].compare(not_ans[inot]))
+				{
+					newDictionary.erase(newDictionary.begin()+itemp);
+					itemp--;
+				}
+			}
+		}
 		/* using recursive function to find answer */
 		if(ans_option[i]!=endWord)
 		{
@@ -141,7 +154,11 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			//cout << "count:" << count << endl;
 			ans1 = findLadders(ans_option[i],endWord,newDictionary,count+1);
 			if (ans1.empty())
+			{
+				not_ans.pushback(ans_option[i]);
 				continue;
+			}
+				
 			else
 			{
 				for(int ix=0;ix<ans1.size();ix++)
