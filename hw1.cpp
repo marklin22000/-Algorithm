@@ -17,7 +17,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	int char_diff;
 	int i,j,idx,ia,inot,itemp;
 	int flag,find_flag;
-	int aa,aaa;
+
 	vector< string > ans_option;
 	vector< string > newDictionary;
 	vector< vector<string> > ans1;
@@ -41,16 +41,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	{
 		flag=0;
 		if(count>min_ans)
-		{
-			for (aa = 0; aa < ans.size(); aa++){
-				cout << "ans[" << aa << "]: ";
-				for (aaa = 0; aaa < (ans[aa]).size()-1; aaa++){
-					cout << (ans[aa])[aaa] << " -> ";
-				}
-				cout << (ans[aa])[(ans[aaa]).size()-1] << endl;
-			}
 			return ans;
-		}
 			
 		cur_word = wordDictionary[i];
 		word_diff = beginWord.size() - cur_word.size();
@@ -137,11 +128,8 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 	{
 		if(ans_option[i]==endWord)
 		{
-			cout <<"min_ans="<<min_ans<<"  ";
-			cout <<"count="<< count<<endl;
 			if(count>min_ans)
 				return ans;
-				
 				
 			min_ans = count;
 
@@ -168,6 +156,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 			}
 		}
 		
+		/* search if there had already had an answer */
 		find_flag = 0;
 		for(itemp=0; itemp<ans.size(); itemp++)
 		{
@@ -197,7 +186,6 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 				idx++;
 			}
 			ans.push_back(temp);
-			//cout<<"aaaaa"<<endl;
 			continue;
 		}
 
@@ -205,6 +193,7 @@ vector< vector<string> > findLadders(string beginWord, string endWord, vector<st
 		ans1 = findLadders(ans_option[i],endWord,newDictionary,count+1);
 		if (ans1.empty())
 		{
+			/* use this word cannot find the answer, so add into not_ans list */
 			not_ans.push_back(ans_option[i]);
 			continue;
 		}
@@ -242,17 +231,6 @@ vector< vector<string> > append_first(vector< vector<string> > ans, string begin
 			ix--;
 		}		
 	}
-/*
-	for (int ix = 0; ix < ans.size(); ix++)
-	{
-		cout << "ans[" << ix << "]: ";
-		for (int iy = 0; iy < (ans[ix]).size()-1; iy++)
-		{
-			cout << (ans[ix])[iy] << " -> ";
-		}
-		cout << (ans[ix])[(ans[ix]).size()-1] << endl;
-	}
-*/
 	return ans;
 }
 /****  Your homework ends here ****/
